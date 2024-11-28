@@ -66,6 +66,7 @@
 
         .nav-button.hover::after {
             width: 100%; /* Full width when hovered */
+            transition: width 0.3s ease-out; /* Smooth transition for hover out */
         }
 
         main {
@@ -216,7 +217,8 @@
             });
 
             button.addEventListener('mouseleave', () => {
-                if (button.querySelector('::after').offsetWidth === button.offsetWidth) {
+                const line = button.querySelector('::after');
+                if (line.offsetWidth === button.offsetWidth) {
                     button.classList.remove('hover');
                 } else {
                     setTimeout(() => button.classList.remove('hover'), 300);
