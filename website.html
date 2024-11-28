@@ -38,10 +38,12 @@
         }
         main {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: calc(100vh - 60px);
             padding: 20px;
+            text-align: center;
         }
         iframe {
             width: 80%;
@@ -49,6 +51,28 @@
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             border-radius: 10px;
+        }
+
+        .games-container {
+            width: 80%;
+            height: 300px;  /* Fixed height for scrolling */
+            overflow-y: auto;  /* Enable scrolling for the inner div */
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .example-domain {
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h1, p {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -60,6 +84,7 @@
     <main id="content-area">
         <h1>Welcome to Game Hub!</h1>
         <p>Click on "Games" to explore and play embedded games.</p>
+        <p>Click on "Games" to start!</p> <!-- Added instruction text here -->
     </main>
 
     <script>
@@ -70,10 +95,17 @@
                 contentArea.innerHTML = `
                     <h1>Welcome to Game Hub!</h1>
                     <p>Click on "Games" to explore and play embedded games.</p>
+                    <p>Click on "Games" to start!</p>  <!-- This is the centered text -->
                 `;
             } else if (page === 'games') {
                 contentArea.innerHTML = `
-                    <iframe src="https://example.com/embed-game1" title="Game 1"></iframe>
+                    <div class="games-container">
+                        <div class="example-domain">Example Domain 1</div>
+                        <div class="example-domain">Example Domain 2</div>
+                        <div class="example-domain">Example Domain 3</div>
+                        <div class="example-domain">Example Domain 4</div>
+                        <div class="example-domain">Example Domain 5</div>
+                    </div>
                 `;
             }
         }
