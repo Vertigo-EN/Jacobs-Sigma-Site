@@ -61,17 +61,11 @@
             width: 0;
             height: 2px;
             background-color: #fff;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out; /* Add left transition */
+            transition: width 0.3s ease-in-out;
         }
 
-        .nav-button:hover::after {
-            width: 100%;
-            left: 0;  /* Ensure the line starts from the left */
-        }
-
-        .nav-button:not(:hover)::after {
-            width: 0;
-            left: 0;  /* Line starts from the current position and expands to the right */
+        .nav-button.hover::after {
+            width: 100%; /* Full width when hovered */
         }
 
         main {
@@ -213,6 +207,22 @@
                 }, 1000);  // Delay before starting fade-in animation
             }
         }
+
+        // Hover effect logic to manage line direction
+        const navButtons = document.querySelectorAll('.nav-button');
+        navButtons.forEach((button) => {
+            button.addEventListener('mouseenter', () => {
+                button.classList.add('hover');
+            });
+
+            button.addEventListener('mouseleave', () => {
+                if (button.querySelector('::after').offsetWidth === button.offsetWidth) {
+                    button.classList.remove('hover');
+                } else {
+                    setTimeout(() => button.classList.remove('hover'), 300);
+                }
+            });
+        });
     </script>
 </body>
 </html>
