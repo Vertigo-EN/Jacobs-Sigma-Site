@@ -98,8 +98,8 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             margin-top: 20px;
-            opacity: 0;  /* Initially hidden for fade-in effect */
-            animation: fadeIn 2s forwards 1s; /* Fade in after 1s delay */
+            opacity: 1;  /* Make sure the container is visible when loaded */
+            animation: fadeIn 2s forwards; /* Fade in after the page load */
         }
 
         .example-domain {
@@ -111,7 +111,26 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             opacity: 0;  /* Initially hidden for fade-in effect */
-            animation: fadeIn 2s forwards;
+            transition: background-color 1s; /* Smooth background-color transition on hover */
+        }
+
+        .example-domain:hover {
+            background-color: #3a5a6d;  /* Same hover color as the nav buttons */
+        }
+
+        .example-domain::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .example-domain:hover::after {
+            width: 100%;
         }
 
         h1, p {
@@ -130,6 +149,16 @@
         }
 
         @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Fade-in for all the example-domain divs at once */
+        @keyframes fadeInAll {
             0% {
                 opacity: 0;
             }
@@ -171,10 +200,10 @@
                 // Trigger fade-in animation for the games container
                 setTimeout(() => {
                     const exampleDomains = document.querySelectorAll('.example-domain');
-                    exampleDomains.forEach((domain, index) => {
-                        domain.style.animation = `fadeIn 2s forwards ${index * 0.5}s`;
+                    exampleDomains.forEach((domain) => {
+                        domain.style.animation = `fadeInAll 2s forwards`;
                     });
-                }, 1000);
+                }, 1000);  // Delay before starting fade-in animation
             }
         }
     </script>
