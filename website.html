@@ -10,14 +10,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #2c3e50;
-            color: #ecf0f1;
+            background-color: #2c3e50;  /* Dark background for the body */
+            color: #ecf0f1;  /* Light text color for the page */
         }
         header {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #34495e;
+            background: #2980b9;  /* Blue header background */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
         }
@@ -41,9 +41,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 60px);  /* Full height minus the header */
             padding: 20px;
             text-align: center;
+            background-color: #2980b9;  /* Blue background for games page */
         }
         iframe {
             width: 80%;
@@ -53,22 +54,26 @@
             border-radius: 10px;
         }
 
+        /* Scrollable container for the games */
         .games-container {
             width: 80%;
             height: 300px;  /* Fixed height for scrolling */
             overflow-y: auto;  /* Enable scrolling for the inner div */
-            background-color: #fff;
+            background-color: #34495e;  /* Darker background for scrollable area */
             padding: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
             border-radius: 10px;
+            margin-top: 20px;
         }
 
         .example-domain {
             padding: 15px;
             margin: 10px 0;
-            background-color: #ecf0f1;
+            background-color: #2980b9;  /* Same blue background */
+            color: #fff;  /* White text inside the example domain */
             border-radius: 5px;
             text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         h1, p {
@@ -82,9 +87,8 @@
         <button class="nav-button" onclick="loadContent('games')">Games</button>
     </header>
     <main id="content-area">
-        <h1>Welcome to Game Hub!</h1>
-        <p>Click on "Games" to explore and play embedded games.</p>
-        <p>Click on "Games" to start!</p> <!-- Added instruction text here -->
+        <h1>Welcome to Jacobs Sigma Site (Hamish.site but better because he sucks at coding)!</h1>
+        <p>Click on "Games" to start!</p>
     </main>
 
     <script>
@@ -95,7 +99,7 @@
                 contentArea.innerHTML = `
                     <h1>Welcome to Game Hub!</h1>
                     <p>Click on "Games" to explore and play embedded games.</p>
-                    <p>Click on "Games" to start!</p>  <!-- This is the centered text -->
+                    <p>Click on "Games" to start!</p>
                 `;
             } else if (page === 'games') {
                 contentArea.innerHTML = `
