@@ -43,13 +43,13 @@
             border-radius: 5px;
             cursor: pointer;
             position: relative;
-            transition: transform 0.3s, background-color 1s ease-in-out; /* Smooth hover transitions */
+            transition: transform 0.3s, background-color 0.5s ease-in-out, opacity 0.3s; /* Smooth hover transitions */
         }
 
         .nav-button:hover {
             transform: scale(1.1);  /* Scale the button */
             background-color: #3a5a6d;  /* Slightly lighter navy on hover */
-            transition: background-color 1s, transform 0.3s ease-in-out;
+            opacity: 1;  /* Ensure the button is fully visible */
         }
 
         /* Hover line animation for buttons */
@@ -79,14 +79,6 @@
             text-align: center;
             background-color: #34495e;  /* Same dark navy for background */
             animation: backgroundAnimation 10s infinite alternate;  /* Same background animation */
-        }
-
-        iframe {
-            width: 80%;
-            height: 80%;
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
         }
 
         /* Scrollable container for the games */
@@ -159,15 +151,31 @@
             }
         }
 
-        /* Fade-in for all the example-domain divs at once */
-        @keyframes fadeInAll {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        /* Speech bubble style */
+        .tooltip {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            background-color: #2c3e50; /* Same as topbar color */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
         }
+
+        .game-button-wrapper {
+            position: relative;
+        }
+
+        .game-button-wrapper:hover .tooltip {
+            display: block;
+            opacity: 1;
+        }
+
     </style>
 </head>
 <body>
@@ -192,20 +200,28 @@
             } else if (page === 'games') {
                 contentArea.innerHTML = `
                     <div class="games-container">
-                        <div class="example-domain">Example Domain 1</div>
-                        <div class="example-domain">Example Domain 2</div>
-                        <div class="example-domain">Example Domain 3</div>
-                        <div class="example-domain">Example Domain 4</div>
-                        <div class="example-domain">Example Domain 5</div>
+                        <div class="game-button-wrapper">
+                            <button class="nav-button">Gem Clicker</button>
+                            <span class="tooltip">Singleplayer</span>
+                        </div>
+                        <div class="game-button-wrapper">
+                            <button class="nav-button">Glow Dodge</button>
+                            <span class="tooltip">Singleplayer</span>
+                        </div>
+                        <div class="game-button-wrapper">
+                            <button class="nav-button">Terminal Hacker</button>
+                            <span class="tooltip">Multiplayer</span>
+                        </div>
+                        <div class="game-button-wrapper">
+                            <button class="nav-button">Blooket 2.0</button>
+                            <span class="tooltip">Multiplayer</span>
+                        </div>
+                        <div class="game-button-wrapper">
+                            <button class="nav-button">Crazy Golf</button>
+                            <span class="tooltip">Multiplayer</span>
+                        </div>
                     </div>
                 `;
-                // Trigger fade-in animation for the games container
-                setTimeout(() => {
-                    const exampleDomains = document.querySelectorAll('.example-domain');
-                    exampleDomains.forEach((domain) => {
-                        domain.style.animation = `fadeInAll 2s forwards`;
-                    });
-                }, 1000);  // Delay before starting fade-in animation
             }
         }
 
@@ -217,12 +233,7 @@
             });
 
             button.addEventListener('mouseleave', () => {
-                const line = button.querySelector('::after');
-                if (line.offsetWidth === button.offsetWidth) {
-                    button.classList.remove('hover');
-                } else {
-                    setTimeout(() => button.classList.remove('hover'), 300);
-                }
+                button.classList.remove('hover');
             });
         });
     </script>
