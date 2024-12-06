@@ -43,10 +43,10 @@
             border-radius: 5px;
             cursor: pointer;
             position: relative;
-            display: flex;
+            display: inline-flex;  /* Adjust to use flex for content positioning */
             align-items: center;
             justify-content: center;  /* Center text horizontally */
-            width: auto;  /* Set to auto width to accommodate text */
+            width: fit-content;  /* Allow the button width to adjust to its content */
             min-width: 80px;  /* Minimum width for the buttons */
             height: 40px;
         }
@@ -74,15 +74,16 @@
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 14px;
-            display: none;
+            visibility: hidden;  /* Start with tooltip hidden */
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;  /* Fade in and out with visibility control */
             white-space: nowrap;
         }
 
         .info-icon:hover + .tooltip {
-            display: block;
+            visibility: visible;
             opacity: 1;
+            transition: opacity 0.3s ease, visibility 0s;  /* Instant visibility when hovered */
         }
 
         main {
